@@ -1,21 +1,32 @@
 # ElixirElasticsearch
 
-**TODO: Add description**
+Sketch application for integrating Elixir and Elasticsearch using the [elasticsearch](https://github.com/danielberkompas/elasticsearch-elixir) library.
 
-## Installation
+Some of the features implemented here:
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `elixir_elasticsearch` to your list of dependencies in `mix.exs`:
+ -  a singe Genserver to take care of the ES index. We do not want to overload the cluster to get out of Java Heap Space
+ -  a stream implementation to load all the documents to be sent to index
+ -  a search DSL to do not expose the Elasticserach query syntax. It's easier to use and easier to upgrade to later versions of Elasticsearch in case changes are made.
+
+## Indexing
+
+Indexing can be done either by hot swap-ing the whole cluster:
 
 ```elixir
-def deps do
-  [
-    {:elixir_elasticsearch, "~> 0.1.0"}
-  ]
-end
+ElixirElasticsearch.IndexerGenserver.hot_swap()
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/elixir_elasticsearch](https://hexdocs.pm/elixir_elasticsearch).
+either by sending a list of documents to index:
 
+```elixir
+ElixirElasticsearch.IndexerGenserver.index_restaurant("demorestaurant")
+```
+
+## Searching
+
+
+Searching can be done by calling the search wrapper module:
+
+```elixir
+ElixirElasticsearch.SearchGateway.search(query)
+```

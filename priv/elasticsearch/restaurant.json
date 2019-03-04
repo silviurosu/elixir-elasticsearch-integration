@@ -1,0 +1,77 @@
+{
+  "mappings": {
+    "_doc": {
+      "dynamic": false,
+      "properties": {
+        "permalink": {
+          "type": "keyword"
+        },
+        "name": {
+          "type": "keyword"
+        },
+        "name_str": {
+          "type": "keyword"
+        },
+        "locale": {
+          "type": "keyword"
+        },
+        "published": {
+          "type": "boolean"
+        },
+        "paused": {
+          "type": "boolean"
+        },
+        "channels": {
+          "type": "keyword"
+        },
+        "created_at": {
+          "type": "date"
+        },
+        "updated_at": {
+          "type": "date"
+        },
+        "configuration": {
+          "properties": {
+            "accept_pickup": {
+              "type": "boolean"
+            },
+            "accept_delivery": {
+              "type": "boolean"
+            },
+            "accept_curbside": {
+              "type": "boolean"
+            },
+            "accept_dinein": {
+              "type": "boolean"
+            }
+          }
+        },
+        "cuisines": {
+          "type": "keyword"
+        },
+        "amenities": {
+          "type": "keyword"
+        },
+        "locations": {
+          "properties": {
+            "city": {
+              "type": "keyword"
+            },
+            "country": {
+              "type": "keyword"
+            },
+            "street": {
+              "type": "keyword"
+            },
+            "zip": {
+              "type": "keyword"
+            },
+            "position": {
+              "type": "geo_point"
+            }
+          }
+        }
+      }
+    }
+  }
+}
